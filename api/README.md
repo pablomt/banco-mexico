@@ -13,19 +13,20 @@ This project contains the following functionalities:
 Integrations-Microservice/
     models/
         external.py                         // Model with the external requests handling
-    common/
-        utils.py                            // The utilities that can be shared between a lot of files
-    decorators/
-        auth.py                             // Decorator for authenticated routes
-        dataType.py                         // Decorator for matching json structures
+    banxico/
+        endpoints.py                        // The endpoints to get some information from banxico apis
+        utils.py                            // Utils to make requests and give format for the responses
+    health/
+        endpoints.py                        // The endpoints to check health status
     .env.example                            // Environment variables example
     application.py                          // The file with the context of the FlaskAPI
     config.py                               // File which loads all environment
     dev_requirements.txt                    // Requirements for development
-    Dockerfile                              // File with the logic for Docker
     manage.py                               // Server manager
     README.md                               // Instructions file
     requirements.txt                        // Requirements for the application
+    Procfile                                // Conf file to heroku deploy
+    runtime.txt                             // Spcify Python version in order to make a deploy in heroku
 ```
 
 ## Running Locally
