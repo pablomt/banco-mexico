@@ -62,11 +62,9 @@ def create_app(debug:bool = False, **config_overrides) -> FlaskAPI:
 
     # Blueprints registration
     from health.endpoints import health_app
-    from banxico.endpoints import udis_serie_app
-    #from banxico.endpoints import usdmx_serie_app
+    from banxico.endpoints import series_app
 
-    app.register_blueprint(udis_serie_app, url_prefix='/api/v1')
-    # app.register_blueprint(usdmx_serie_app, url_prefix='/api/v1')
+    app.register_blueprint(series_app, url_prefix='/api/v1')
     app.register_blueprint(health_app)
 
     return app
