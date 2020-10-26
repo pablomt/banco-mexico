@@ -1,0 +1,14 @@
+# Deployment Libraries
+gunicorn
+
+# Flask Libraries
+flask-api
+flask
+
+# Linting libraries
+autopep8
+pylint
+
+# Functionality Libraries
+pytz
+requests
