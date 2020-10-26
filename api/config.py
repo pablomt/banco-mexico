@@ -24,5 +24,5 @@ ORIGINS = (os.environ.get("ORIGINS", "*")).split(",")
 # Banco de México Variables and Endpoints
 BANXICO_TOKEN = os.environ.get("BANXICO_TOKEN", "")
 BANXICO_URL = os.environ.get("BANXICO_URL", "")
-BANXICO_UDIS_SERIE = os.environ.get("UDIS_SERIE", "")
+BANXICO_UDIS_SERIE = os.environ.get("BANXICO_UDIS_SERIE", "")
 BANXICO_USD_TO_MXN_SERIE = os.environ.get("BANXICO_USD_TO_MXN_SERIE", "")

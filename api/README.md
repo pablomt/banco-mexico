@@ -48,6 +48,5 @@ Then run
 
 ### Run project
 1. Run `pip install -r dev_requirements.txt` when the virtual environment is activated
-2. Run `FLASK_ENV=development FLASK_APP=manage.py` on the terminal
 3. Create `.env` file from the `.env.example` template
-3. Run `flask run` in the terminal
+3. Run `FLASK_APP=manage.py FLASK_ENV=development DEBUG=True flask run -p 5000 ` in the terminal
