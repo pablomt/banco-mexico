@@ -42,7 +42,7 @@ def get_udies_series():
                 {
                     "min_value": 6.00,
                     "max_value": 7.00,
-                    "average": "6.55",
+                    "average": 6.55,
                     "dates": [
                         {
                             "date": "01/10/2020",
@@ -51,16 +51,12 @@ def get_udies_series():
                     ]
                 }
 
-        :<json string country_code: The contry code from the user
-        :>json int    id: The city ID
-        :<json string name: city name
-        :>json string country_code: country code
-        :>json string region_name: region name (federative state)
+        :<json float min_value: The udi min value for specific range of date.
+        :>json float max_value: The udi max value for specific range of date
+        :<json float average: The udi average value for specific range of date
+        :>json list dates: All the days with their own udi value
         :status 200: The dict of response returned
-        :status 204: Session ID expired or empty response from cinepolis api
-        :status 400: Wrong headers on the request
         :status 422: Wrong parameters on the body of the request
-        :status 503: There was an internal error, review logs for more information
     """
     initial_date = request.args.get('initial_date', "2020-01-01")
     end_date = request.args.get('end_date', "2020-31-12")
@@ -69,7 +65,7 @@ def get_udies_series():
         dt.datetime.strptime(initial_date, "%Y-%m-%d")
         dt.datetime.strptime(end_date, "%Y-%m-%d")
     except:
-        return {"error": "Invalid Date format: aaaa-dd-mm"}, status.HTTP_400_BAD_REQUEST
+        return {"error": "Invalid Date format: aaaa-dd-mm"}, 422
 
     response = utils.get_udis_series(initial_date, end_date)
 

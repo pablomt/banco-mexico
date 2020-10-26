@@ -31,12 +31,24 @@ def get_udis_series(initial_date: str, end_date:str) -> dict:
     if udis_response:
         dates = udis_response.get("bmx", {}).get("series", [])[0].get("datos", "")
         if dates:
-            response["max_udi_value"] = max(dates, key=lambda x:x.get("dato", ""))
-            response["min_udi_value"] = min(dates, key=lambda x:x.get("dato", ""))
-            response["average_udi"] = float(sum(float(d['dato']) for d in dates)) / len(dates)
             for date in dates:
-                udis_values_per_day[date.get("fecha", "")] = date.get("dato")
-            response["dates"] = udis_values_per_day
+                udis_values_per_day[date.get("fecha", "")] = float(date.get("dato"))
+
+            max_udi_value = (max(dates, key=lambda x:float(x.get("dato", -1))))
+            min_udi_value = (min(dates, key=lambda x:float(x.get("dato", -1))))
+            average_udi = float(sum(float(d['dato']) for d in dates)) / len(dates)
+            response= {
+                "average_udi": average_udi,
+                "max_udi_value": {
+                    "value": float(max_udi_value.get("dato", -1)),
+                    "date": max_udi_value.get("fecha", -1)
+                },
+                "min_udi_value":{
+                    "value": float(min_udi_value.get("dato", -1)),
+                    "date": min_udi_value.get("fecha", -1)
+                },
+                "dates": udis_values_per_day
+            }
 
         return response
     else:
