@@ -38,8 +38,6 @@ def create_app(debug:bool = False, **config_overrides) -> FlaskAPI:
 
     if debug:
         logger_config['root']['level'] = 'DEBUG'
-    elif testing:
-        logger_config['root']['level'] = 'INFO'
     else:
         logger_config['root']['level'] = 'WARNING'
 
@@ -52,7 +50,6 @@ def create_app(debug:bool = False, **config_overrides) -> FlaskAPI:
 
     # Set config environment
     app.debug = debug
-    app.testing = testing
 
     # Define parser for the response of requests
     app.config['DEFAULT_PARSERS'] = ['flask_api.parsers.JSONParser']
@@ -64,11 +61,12 @@ def create_app(debug:bool = False, **config_overrides) -> FlaskAPI:
     app.config.update(config_overrides)
 
     # Blueprints registration
+    from health.endpoints import health_app
     #from banxico.endpoints import udis_serie_app
     #from banxico.endpoints import usdmx_serie_app
 
-    #app.register_blueprint(mongo_app, url_prefix='')
     #app.register_blueprint(udis_serie, url_prefix='/api/v1')
     #app.register_blueprint(usdmx_serie_app, url_prefix='/api/v1')
+    app.register_blueprint(health_app)
 
     return app

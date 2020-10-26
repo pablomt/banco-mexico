@@ -4,6 +4,7 @@ gunicorn
 # Flask Libraries
 flask-api
 flask
+flask-cors
 
 # Linting libraries
 autopep8
